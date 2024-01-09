@@ -1,0 +1,14 @@
+.footer{
+    display: block;
+    background: url(../../../assets//images//more/11.png);
+}
+
+.footerUl li{
+    display: flex;
+    gap: 5px;
+
+}
+
+.footer .copyright{
+    background: url(../../../assets/images/more/24.jpg);
+}

@@ -1,0 +1,7 @@
+.home_banner{
+    background: url(../../assets/images/more/3.png);
+    height: 70vh;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
