@@ -6,7 +6,7 @@ import icon2 from '../../assets/images/icons/2.png'
 import icon3 from '../../assets/images/icons/3.png'
 import icon4 from '../../assets/images/icons/4.png'
 import { RiCupLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Coffees from "../Shared/Coffees/Coffees";
 import cup1 from '../../assets/images/cups/Rectangle 9.png'
 import cup2 from '../../assets/images/cups/Rectangle 10.png'
@@ -21,10 +21,11 @@ import Footer from "../Shared/Footer/Footer";
 
 
 const Home = () => {
+    const coffees = useLoaderData();
 
-    const data =[
-       'name' , 'address'
-    ]
+    // const data =[
+    //    'name' , 'address'
+    // ]
     return (
         <div>
             <TopTitle></TopTitle>
@@ -67,9 +68,9 @@ const Home = () => {
                     <h1 className="text-3xl font-rancho text-[#331A15]">Our Popular Products</h1>
                     <Link to={'/addcoffee'}><button className="btn btn-outline bg-[#E3B577]">Add Coffee <span><RiCupLine/></span></button></Link>
                 </div>
-                <div className="w-4/5 mx-auto grid grid-col-2 grid-flow-col gap-4">
+                <div className="w-4/5 mx-auto grid grid-cols-2 gap-4 ">
                     {
-                        data.map(i => <Coffees i={i} key={i.id}></Coffees>)
+                        coffees.map(coffee => <Coffees coffee={coffee} key={coffee._id}></Coffees>)
                     }
                 </div>
             </div>

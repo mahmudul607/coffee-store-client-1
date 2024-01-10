@@ -6,8 +6,8 @@ import './Footer.css'
 const Footer = () => {
     return (
         <footer className="footer p-10 bg-neutral   text-[#331A15]">
-            <div className="w-4/5 mx-auto flex">
-                <aside className='w-1/2'>
+            <div className="md:w-4/5 mx-auto md:flex ms:text-center">
+                <aside className='md:w-1/2 w-full'>
                     <img className='h-16' src={logo1} alt="" />
 
                     <p><span className='text-3xl font-rancho'>Coffee Shop.</span><br />Providing reliable tech since 1992</p>
@@ -41,7 +41,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </aside>
-                <aside className='w-1/2'>
+                <aside className='md:w-1/2 w-full'>
                     <div className="hero  ">
                         <div className="w-full">
                             <div className="card  w-full   bg-base-100">
