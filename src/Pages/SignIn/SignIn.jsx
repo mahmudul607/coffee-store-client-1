@@ -47,7 +47,7 @@ const SignIn = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
-                            <Link className="pt-4">If you New in here? please <span className="font-bold">SignUp</span></Link>
+                            <Link to={'/signup'} className="pt-4">If you New in here? please <span className="font-bold">SignUp</span></Link>
                         </div>
                     </form>
                 </div>

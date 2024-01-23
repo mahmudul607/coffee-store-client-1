@@ -41,11 +41,11 @@ const Footer = () => {
                         </ul>
                     </div>
                 </aside>
-                <aside className='md:w-1/2 w-full'>
+                <aside className='md:w-1/2 w-full mb-2'>
                     <div className="hero  ">
                         <div className="w-full">
-                            <div className="card  w-full   bg-base-100">
-                                <h2 className='text-2xl font-rancho'>Connect With Us</h2>
+                            <div className="card  w-full   bg-base-100 p-4">
+                                <h2 className='text-2xl font-rancho text-black'>Connect With Us</h2>
                                 <form className="card-body w-full">
                                     <div className="form-control">
                                         <label className="label">

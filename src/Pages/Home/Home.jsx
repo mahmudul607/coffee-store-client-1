@@ -31,7 +31,7 @@ const Home = () => {
             <TopTitle></TopTitle>
             <Banner></Banner>
             {/* Our Commitment Section */}
-            <div className="our_commitment  bg-[#ECEAE3]">
+            <div className="our_commitment text-black bg-[#ECEAE3]">
                 <div className="w-4/5 mx-auto">
                     <ul className="flex gap-4  p-16 ">
                         <li>
@@ -62,11 +62,11 @@ const Home = () => {
             </div>
 
             {/* Our Popular Products */}
-            <div className="popular_products">
+            <div className="popular_products ">
                 <div className="title_area text-center p-16">
                     <p>---Sip & Savor ---</p>
-                    <h1 className="text-3xl font-rancho text-[#331A15]">Our Popular Products</h1>
-                    <Link to={'/addcoffee'}><button className="btn btn-outline bg-[#E3B577]">Add Coffee <span><RiCupLine/></span></button></Link>
+                    <h1 className="text-3xl font-rancho text-[#111010]">Our Popular Products</h1>
+                    <Link to={'/addcoffee'}><button className="btn btn-outline text-black bg-[#E3B577]">Add Coffee <span><RiCupLine/></span></button></Link>
                 </div>
                 <div className="w-4/5 mx-auto grid grid-cols-2 gap-4 ">
                     {
@@ -77,11 +77,11 @@ const Home = () => {
 
             {/* Follow Us in Instagram */}
 
-            <div className="instagram_section w-4/5 mx-auto gap-2 text-center pt-36 ">
+            <div className="instagram_section  gap-2 text-center pt-36 ">
                 <h4 className="font-rancho">Follow Us Now</h4>
-                <h1 className="text-4xl font-rancho text-[#331A15] pb-8">Follow on Instagram</h1>
+                <h1 className="text-4xl font-rancho text-[#080808] pb-8">Follow on Instagram</h1>
 
-                <div className="grid grid-cols-4 ">
+                <div className="grid grid-cols-4 w-4/5 mx-auto">
                     <img src={cup1} alt="" />
                     <img src={cup2} alt="" />
                     <img src={cup3} alt="" />
