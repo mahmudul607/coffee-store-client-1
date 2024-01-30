@@ -4,6 +4,7 @@ import { FaPhoneAlt, FaInstagram } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import './Footer.css'
 import axios from 'axios';
+import Swal from 'sweetalert2';
 const Footer = () => {
 
 
@@ -22,6 +23,13 @@ const Footer = () => {
         axios.post('http://localhost:5000/messages', messageInfo)
         .then(result=>{
             console.log(result.data)
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Message Send",
+                showConfirmButton: false,
+                timer: 1500
+            });
         })
         .catch(err=>{
             console.log(err.message)
@@ -76,7 +84,7 @@ const Footer = () => {
                                         <label className="label">
                                             <span className="label-text ">Name</span>
                                         </label>
-                                        <input type="text" placeholder="email" className="input input-bordered w-full" name='name' required />
+                                        <input type="text" placeholder="Name" className="input input-bordered w-full" name='name' required />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">

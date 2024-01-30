@@ -161,6 +161,8 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* users   */}
+
             <Footer></Footer>
         </div>
     );
