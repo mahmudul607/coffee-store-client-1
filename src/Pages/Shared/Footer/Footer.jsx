@@ -20,7 +20,7 @@ const Footer = () => {
             email,
             message
         }
-        axios.post('http://localhost:5000/messages', messageInfo)
+        axios.post('https://coffee-store-server-1-pi.vercel.app/messages', messageInfo)
         .then(result=>{
             console.log(result.data)
             Swal.fire({
@@ -30,6 +30,7 @@ const Footer = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            form.reset();
         })
         .catch(err=>{
             console.log(err.message)

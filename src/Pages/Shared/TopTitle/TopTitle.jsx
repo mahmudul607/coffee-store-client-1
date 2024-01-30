@@ -31,7 +31,7 @@ const TopTitle = () => {
 //                     setLoginError('Check your email and verify your Account')
 //                 }
 //                 setLoginError('success');
-//                 axios.post('http://localhost:5000/jwt', { withCredentials: true })
+//                 axios.post('https://coffee-store-server-1-pi.vercel.app/jwt', { withCredentials: true })
 //                     .then(res => {
 //                         console.log(res.data.success)
 //                         if (res.data.success) {
@@ -55,7 +55,7 @@ const TopTitle = () => {
 //         }
 //         setLoginError('success');
 
-//         axios.post('http://localhost:5000/jwt')
+//         axios.post('https://coffee-store-server-1-pi.vercel.app/jwt')
 //             .then(res => {
 //                 if (res.data.success) {
 //                     navigate(location?.state ? location.state : '/')

@@ -41,7 +41,7 @@ const Update = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/coffees/${_id}`, {
+                fetch(`https://coffee-store-server-1-pi.vercel.app/coffees/${_id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

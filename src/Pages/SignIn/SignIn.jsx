@@ -6,7 +6,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import axios from 'axios';
 import Footer from '../Shared/Footer/Footer';
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebookSquare } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaFacebookSquare } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import TopTitle from '../Shared/TopTitle/TopTitle';
 import Header from '../Shared/Header/Header';
@@ -15,11 +15,12 @@ import Header from '../Shared/Header/Header';
 
 
 const SignIn = () => {
-    const { loginUser, loginGoogle, handleLogout } = useContext(AuthContext);
+    const { loginUser, loginGoogle, handleLogout, resetPasswordUsingEmail } = useContext(AuthContext);
 
     const location = useLocation();
     const navigate = useNavigate();
-    const [loginError, setLoginError] = useState(null)
+    const [loginError, setLoginError] = useState(null);
+    const [show, setShow]= useState(false);
 
 
     // Login Functionality
@@ -62,7 +63,7 @@ const SignIn = () => {
                 }
                 setLoginError('success');
 
-                axios.post('http://localhost:5000/jwt')
+                axios.post('https://coffee-store-server-1-pi.vercel.app/jwt')
                     .then(res => {
                         if (res.data.success) {
                             navigate(location?.state ? location.state : '/')
@@ -73,6 +74,29 @@ const SignIn = () => {
                 setLoginError(err.message);
             })
     }
+
+
+// reset password
+
+const handleResetPassword = () =>{
+    const email=document.getElementById('email').value;
+console.log(email)
+    resetPasswordUsingEmail(email)
+    .then(()=>{
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Password Reset Email Send to: ${email}`,
+            showConfirmButton: false,
+            timer: 1500
+        });
+})
+.catch(err => {
+    setLoginError(err.message)
+})
+}
+
+
 
     if (loginError == 'success') {
         Swal.fire({
@@ -93,6 +117,7 @@ const SignIn = () => {
         });
 
     }
+
 
     return (
         <>
@@ -115,15 +140,23 @@ const SignIn = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" placeholder="email" name="email" className="input input-bordered" required />
+                                <input type="email" id='email' placeholder="email" name="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                                <div className='relative'>
+                                <input 
+                                type={show?"text":"password"} 
+                                name="password"
+                                 placeholder="password" 
+                                 className="input input-bordered relative w-full" required />
+                                <span className="absolute right-2 top-4" onClick={() => setShow(!show)}> {show ? <FaEye /> : <FaEyeSlash />}</span>
+                                </div>
+                                
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <button onClick={ handleResetPassword} className="label-text-alt link link-hover" >Forgot password?</button>
                                 </label>
                             </div>
                             <div className="form-control mt-6">

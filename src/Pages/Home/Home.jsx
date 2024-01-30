@@ -30,17 +30,17 @@ const Home = () => {
  
 
     
-    // const url = ('http://localhost:5000/coffees') 
+    // const url = ('https://coffee-store-server-1-pi.vercel.app/coffees') 
 
     useEffect(()=>{
 
-        // axios.get('http://localhost:5000/coffees')
+        // axios.get('https://coffee-store-server-1-pi.vercel.app/coffees')
         // .then(res =>{
         //     console.log(res.data);
         //     setCoffees(res.data);
         // })
         
-        fetch('http://localhost:5000/coffees',{
+        fetch('https://coffee-store-server-1-pi.vercel.app/coffees',{
             method:'GET'
         })
         .then(res => res.json())
@@ -62,7 +62,7 @@ const Home = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/coffees/${id}`,{
+                fetch(`https://coffee-store-server-1-pi.vercel.app/coffees/${id}`,{
                     method: 'DELETE',
                 })
                 .then(res => res.json())

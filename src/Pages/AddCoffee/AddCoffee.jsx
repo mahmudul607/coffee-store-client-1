@@ -25,7 +25,7 @@ const AddCoffee = () => {
         const coffeeInfo = {name, chef, price, quantity, photoUrl, supplier, category};
         console.log(coffeeInfo);
 
-        fetch('http://localhost:5000/coffees',{
+        fetch('https://coffee-store-server-1-pi.vercel.app/coffees',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -37,11 +37,20 @@ const AddCoffee = () => {
             console.log(data);
             if(data.insertedId){
                 Swal.fire({
-                    title: 'Success!',
-                    text: 'Coffee Added Successfully',
-                    icon: 'Success',
-                    confirmButtonText: 'Ok'
-                  })
+                    title: "Do you want to Add This Coffee?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Save",
+                    denyButtonText: `Don't save`
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      Swal.fire("Saved!", "", "success");
+                      form.reset();
+                    } else if (result.isDenied) {
+                      Swal.fire("Changes are not saved", "", "info");
+                    }
+                  });
 
             }
         })

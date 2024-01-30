@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 
 
@@ -50,6 +50,10 @@ const loginGoogle = ()=>{
     
 }
 
+const resetPasswordUsingEmail = (email) =>{
+    return sendPasswordResetEmail(auth, email)
+}
+
 
 
 
@@ -83,6 +87,7 @@ const loginGoogle = ()=>{
         loginGoogle,
         handleLogout,
         user,
+        resetPasswordUsingEmail,
         addUserProperty,
         loading
     }

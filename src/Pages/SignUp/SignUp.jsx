@@ -6,11 +6,13 @@ import Footer from "../Shared/Footer/Footer";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {  updateProfile } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const SignUp = () => {
     const { createUser, sendVerificationEmail, handleLogout } = useContext(AuthContext);
     const [registerError, setRegisterError] = useState(null)
+    const [show, setShow] = useState(false);
     const navigate = useNavigate();
 
     const handleSignUp = (e) => {
@@ -79,7 +81,7 @@ const SignUp = () => {
                     });
 
                     
-                axios.post('http://localhost:5000/signup', result.user)
+                axios.post('https://coffee-store-server-1-pi.vercel.app/signup', result.user)
                     .then(res => {
                         console.log(res.data);
                         setRegisterError('user created successfully')
@@ -137,7 +139,14 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                                <div className='relative'>
+                                <input 
+                                type={show?"text":"password"} 
+                                name="password"
+                                 placeholder="password" 
+                                 className="input input-bordered relative w-full" required />
+                                <span className="absolute right-2 top-4" onClick={() => setShow(!show)}> {show ? <FaEye /> : <FaEyeSlash />}</span>
+                                </div>
 
                             </div>
                             <div className="flex">
