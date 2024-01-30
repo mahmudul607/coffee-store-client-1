@@ -3,7 +3,32 @@ import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt, FaInstagram } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import './Footer.css'
+import axios from 'axios';
 const Footer = () => {
+
+
+    const handleCustomerMessage =(e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const message = form.message.value;
+      
+        const messageInfo = {
+            name,
+            email,
+            message
+        }
+        axios.post('http://localhost:5000/messages', messageInfo)
+        .then(result=>{
+            console.log(result.data)
+        })
+        .catch(err=>{
+            console.log(err.message)
+        })
+
+
+    }
     return (
         <footer className="footer p-10 bg-neutral   text-[#331A15]">
             <div className="md:w-4/5 mx-auto md:flex ms:text-center">
@@ -46,25 +71,25 @@ const Footer = () => {
                         <div className="w-full">
                             <div className="card  w-full   bg-base-100 p-4">
                                 <h2 className='text-2xl font-rancho text-black'>Connect With Us</h2>
-                                <form className="card-body w-full">
+                                <form className="card-body w-full" onSubmit={handleCustomerMessage}>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text ">Name</span>
                                         </label>
-                                        <input type="text" placeholder="email" className="input input-bordered w-full" required />
+                                        <input type="text" placeholder="email" className="input input-bordered w-full" name='name' required />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Email</span>
                                         </label>
-                                        <input type="email" placeholder="password" className="input input-bordered" required />
+                                        <input type="email" placeholder="Email" name='email' className="input input-bordered" required />
                                       
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Message</span>
                                         </label>
-                                        <textarea className="textarea textarea-ghost" placeholder="Message"></textarea>
+                                        <textarea className="textarea textarea-ghost" placeholder="Message" name='message'></textarea>
                                       
                                     </div>
                                     <div className=" mt-6">

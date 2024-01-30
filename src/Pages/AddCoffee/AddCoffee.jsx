@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Footer from '../Shared/Footer/Footer';
 import Header from '../Shared/Header/Header';
 import TopTitle from '../Shared/TopTitle/TopTitle';
@@ -5,6 +6,8 @@ import './AddCoffee.css';
 import Swal from 'sweetalert2'
 
 const AddCoffee = () => {
+    const [selectedCategory, setSelectedCategory] = useState('');
+
     const handleAddCoffee = (e) => {
 
         e.preventDefault();
@@ -17,12 +20,12 @@ const AddCoffee = () => {
         const quantity = form.quantity.value;
         const photoUrl = form.photoUrl.value;
         const supplier = form.supplier.value;
-        const category = form.category.value;
+        const category = selectedCategory;
 
         const coffeeInfo = {name, chef, price, quantity, photoUrl, supplier, category};
         console.log(coffeeInfo);
 
-        fetch('https://coffee-store-server-1-two.vercel.app/coffees',{
+        fetch('http://localhost:5000/coffees',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -37,7 +40,7 @@ const AddCoffee = () => {
                     title: 'Success!',
                     text: 'Coffee Added Successfully',
                     icon: 'Success',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                   })
 
             }
@@ -107,16 +110,23 @@ const AddCoffee = () => {
                         
                     </label>
                 </div>
-                <div  className="md:basis-2/4 pl-2">
-                    <label className="form-control w-full ">
-                        <div className="label">
-                            <span className="label-text">Category</span>
-                          
+                <div className="md:basis-2/4 pl-2">
+                            <label className="form-control w-full ">
+                                <div className="label">
+                                    <span className="label-text">Category</span>
+
+                                </div>
+                                {/* <input type="text" defaultValue={category} name='category' placeholder="Enter Coffee Category" className="input input-bordered w-full " /> */}
+
+                                <select name='category' className="select select-bordered w-full "   onChange={(e) => setSelectedCategory(e.target.value)}>
+                                    <option disabled selected>Which type?</option>
+                                    <option>Turkey</option>
+                                    <option>Foreign</option>
+                                    <option>Local</option>
+                                    <option>Sylhety</option>
+                                </select>
+                            </label>
                         </div>
-                        <input type="text" name='category' placeholder="Enter Coffee Category" className="input input-bordered w-full " />
-                        
-                    </label>
-                </div>
                 <div  className="w-full pl-2">
                     <label className="form-control w-full ">
                         <div className="label">

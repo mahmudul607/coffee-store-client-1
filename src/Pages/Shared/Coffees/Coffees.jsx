@@ -1,42 +1,30 @@
 import { FaRegEye, FaPencil } from "react-icons/fa6";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
-import Swal from 'sweetalert2'
+import { Link, } from "react-router-dom";
 
-const Coffees = ({coffee}) => {
+import PropTypes from 'prop-types';
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+
+
+
+
+
+
+const Coffees = ({coffee, handleDelete}) => {
+    const {user} = useContext(AuthContext);
+
+    console.log(user)
+
+  
 
     
+ 
     const {name, price, chef, photoUrl, _id} = coffee;
+    
 
-    const handleDelete =(_id) => {
-        console.log(_id)
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`https://coffee-store-server-1-two.vercel.app/coffees/${_id}`,{
-                    method: 'DELETE',
-                })
-                .then(res => res.json())
-                .then(data =>{
-                  console.log(data)
-                })
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            }
-          });
-       
-    }
+
+    
    
     return (
         <div className="card card-side bg-[#F5F4F1] w-full">
@@ -48,8 +36,8 @@ const Coffees = ({coffee}) => {
                 <p><span className="font-bold">Price: </span>{price}</p>
                 </div>
                 <div className="card-actions grid w-1/4  justify-end">
-                    <Link to={`/view/${_id}`}><button className="btn grid w-12 text-2xl bg-[#D2B48C] text-white"><FaRegEye className=""/></button></Link>
-                    <Link to={`/update/${_id}`}><button className="btn grid w-12 text-2xl bg-[#3C393B] text-white"><FaPencil /></button></Link>
+                    <Link to={`/view/${_id}`} ><span className="btn grid w-12 text-2xl bg-[#D2B48C] text-white"><FaRegEye className=""/></span></Link>
+                    <Link to={`update/${_id}`} ><button className="btn grid w-12 text-2xl bg-[#3C393B] text-white"><FaPencil /></button></Link>
                     <button onClick={()=>handleDelete(coffee._id)} className="btn grid w-12 text-2xl bg-[#EA4744] text-white"><MdOutlineDeleteOutline/></button>
                 </div>
             </div>
@@ -59,7 +47,8 @@ const Coffees = ({coffee}) => {
 
 Coffees.propTypes = {
     
-    coffee: PropTypes.node,
+    coffee: PropTypes.object,
+    handleDelete:PropTypes.func.isRequired,
 }
 
 export default Coffees;

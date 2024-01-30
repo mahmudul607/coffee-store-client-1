@@ -7,17 +7,20 @@ import Root from "../../Layouts/Root/Root";
 import DetailsCoffee from "../../Pages/DetailsCoffee/DetailsCoffee";
 import SignUp from "../../Pages/SignUp/SignUp";
 import SignIn from "../../Pages/SignIn/SignIn";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 
 const Router= createBrowserRouter([
     {
         path:'/',
         element: <Root></Root>,
+        errorElement:<ErrorPage></ErrorPage>,
        
         children:[
             {
                 path:'/',
                 element: <Home/>,
-                loader: () => fetch('https://coffee-store-server-1-two.vercel.app/coffees')
+                // loader: () => fetch('http://localhost:5000/coffees')
             },
             {
                 path:'/addcoffee',
@@ -26,13 +29,13 @@ const Router= createBrowserRouter([
             
             {
                 path:'/update/:id',
-                element: <Update></Update>,
-                loader: ({params}) => fetch(`https://coffee-store-server-1-two.vercel.app/coffees/${params.id}`)
+                element: <PrivateRoute><Update></Update></PrivateRoute>,
+                loader: async ({params}) => await fetch(`http://localhost:5000/coffees/${params.id}`)
             },
             {
                 path:'/view/:id',
                 element: <DetailsCoffee></DetailsCoffee>,
-                loader: ({params}) => fetch(`https://coffee-store-server-1-two.vercel.app/coffees/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/coffees/${params.id}`)
             },
             {
                 path:'/signup',
@@ -41,7 +44,7 @@ const Router= createBrowserRouter([
             {
                 path:'/login',
                 element: <SignIn/>
-            }
+            },
         ]
     }
 ]);
